@@ -87,6 +87,33 @@ class UserAPI
     }
 
     /**
+     * Upload a new photo for a user
+     * More info: https://www.hipchat.com/docs/apiv2/method/update_photo
+     *
+     * @param User $user User whose photo will be updated
+     * @param string $photoPath
+     */
+    public function updateUserPhoto(User $user, $photoPath)
+    {
+        if (empty($photoPath) || !is_string($photoPath)) {
+            throw new \InvalidArgumentException('The user photo is invalid.');
+        }
+
+        if (null != $photoPath) {
+            if (!file_exists($photoPath) || !is_readable($photoPath)) {
+                throw new \UnexpectedValueException($photoPath . ' does not exist or is not readable');
+            }
+
+            $request = array(
+                'photo' => base64_encode(file_get_contents($photoPath)),
+            );
+
+            $this->client->put(sprintf('/v2/user/%s/photo', $user->getId()), $request);
+        }
+
+    }
+
+    /**
      * Delete a user.
      *
      * @param string $userId The id, email address, or mention name (beginning with an '@') of the user to delete
