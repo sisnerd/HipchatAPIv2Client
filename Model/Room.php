@@ -2,8 +2,16 @@
 
 namespace GorkaLaucirica\HipchatAPIv2Client\Model;
 
+/**
+ * Class Room
+ *
+ * @package GorkaLaucirica\HipchatAPIv2Client\Model
+ */
 class Room
 {
+    /**
+     * @var int
+     */
     protected $id;
 
     protected $xmppJid;
@@ -13,24 +21,50 @@ class Room
      */
     protected $statistics;
 
+    /**
+     * @var string
+     */
     protected $name;
+
 
     protected $links;
 
+    /**
+     * @var string
+     */
     protected $created;
 
+    /**
+     * @var bool
+     */
     protected $archived;
 
+    /**
+     * @var string
+     */
     protected $privacy;
+
 
     protected $guestAccessible;
 
+    /**
+     * @var string
+     */
     protected $topic;
 
+    /**
+     * @var array of User
+     */
     protected $participants;
 
+    /**
+     * @var User
+     */
     protected $owner;
 
+    /**
+     * @var string
+     */
     protected $guestAccessUrl;
 
     /**
