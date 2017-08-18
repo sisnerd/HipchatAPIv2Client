@@ -9,6 +9,10 @@ namespace GorkaLaucirica\HipchatAPIv2Client\Model;
  */
 class Room
 {
+    const PRIVACY_PRIVATE = 'private';
+    const PRIVACY_PUBLIC  = 'public';
+
+
     /**
      * @var int
      */
@@ -299,6 +303,22 @@ class Room
     public function getPrivacy()
     {
         return $this->privacy;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublic()
+    {
+        return $this->getPrivacy() == self::PRIVACY_PUBLIC;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPrivate()
+    {
+        return !$this->isPublic();
     }
 
     /**
