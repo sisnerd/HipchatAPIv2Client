@@ -425,6 +425,10 @@ class Room
      */
     public function getOwner()
     {
+        if (!$this->owner instanceof User) {
+            $this->owner = new User();
+        }
+
         return $this->owner;
     }
 
