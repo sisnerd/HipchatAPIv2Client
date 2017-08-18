@@ -21,9 +21,9 @@ class UserAPISpec extends ObjectBehavior
 
     function it_gets_all_users(Client $client)
     {
-        $response = array('items' => array(array(
+        $response = array('items'      => array(array(
             'mention_name' => '@test', 'id' => '123456', 'links' => array(), 'name' => 'Test')),
-            'startIndex' => 0, 'maxResults' => 50, 'links' => array()
+                          'startIndex' => 0, 'maxResults' => 50, 'links' => array(),
         );
 
         $client->get('/v2/user', array())->shouldBeCalled()->willReturn($response);
@@ -34,7 +34,7 @@ class UserAPISpec extends ObjectBehavior
     function it_gets_user(Client $client)
     {
         $mentionName = '@test';
-        $response = $this->getTestResponse();
+        $response    = $this->getTestResponse();
         $client->get("/v2/user/$mentionName")->shouldBeCalled()->willReturn($response);
 
         $this->getUser($mentionName)->shouldReturnAnInstanceOf('GorkaLaucirica\HipchatAPIv2Client\Model\User');
@@ -43,7 +43,7 @@ class UserAPISpec extends ObjectBehavior
     function it_creates_user(Client $client, User $user)
     {
         $request = array(
-            'name' => 'Test', 'title' => 'Tester', 'mention_name' => 'test', 'is_group_admin' => false,
+            'name'  => 'Test', 'title' => 'Tester', 'mention_name' => 'test', 'is_group_admin' => false,
             'email' => 'test@test.com');
         $user->toJson()->shouldBeCalled()->willReturn($request);
         $request['password'] = 'test1234';
@@ -55,7 +55,7 @@ class UserAPISpec extends ObjectBehavior
     function it_updates_user(Client $client, User $user)
     {
         $request = array(
-            'id' => '123456', 'name' => 'Test', 'title' => 'Tester', 'mention_name' => 'test',
+            'id'             => '123456', 'name' => 'Test', 'title' => 'Tester', 'mention_name' => 'test',
             'is_group_admin' => false, 'email' => 'test@test.com');
         $user->toJson()->shouldBeCalled()->willReturn($request);
         $user->getId()->shouldBeCalled()->willReturn('123456');
@@ -80,20 +80,20 @@ class UserAPISpec extends ObjectBehavior
     protected function getTestResponse()
     {
         return array(
-            'xmpp_jid' => '',
-            'is_deleted' => false,
-            'name' => 'Sr. Test',
-            'last_active' => '2014-07-09 13:51:54',
-            'title' => 'Tester',
-            'presence' => array(),
-            'created' => '2014-07-05 13:51:54',
-            'id' => 123435,
-            'mention_name' => '@test',
+            'xmpp_jid'       => '',
+            'is_deleted'     => false,
+            'name'           => 'Sr. Test',
+            'last_active'    => '2014-07-09 13:51:54',
+            'title'          => 'Tester',
+            'presence'       => array(),
+            'created'        => '2014-07-05 13:51:54',
+            'id'             => 123435,
+            'mention_name'   => '@test',
             'is_group_admin' => false,
-            'timezone' => 'UTC+1',
-            'is_guest' => false,
-            'email' => 'test@test.com',
-            'photo_url' => 'http://test.com/test.jpg'
+            'timezone'       => 'UTC+1',
+            'is_guest'       => false,
+            'email'          => 'test@test.com',
+            'photo_url'      => 'http://test.com/test.jpg',
         );
     }
 }

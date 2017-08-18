@@ -39,6 +39,7 @@ class RoomAPI
         foreach ($response['items'] as $response) {
             $rooms[] = new Room($response);
         }
+
         return $rooms;
     }
 
@@ -74,6 +75,7 @@ class RoomAPI
         foreach ($response['items'] as $response) {
             $messages[] = new Message($response);
         }
+
         return $messages;
     }
 

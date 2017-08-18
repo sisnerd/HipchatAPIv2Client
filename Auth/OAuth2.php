@@ -23,6 +23,6 @@ class OAuth2 implements AuthInterface
      */
     public function getCredential()
     {
-        return "Bearer ".$this->authToken;
+        return "Bearer " . $this->authToken;
     }
 }

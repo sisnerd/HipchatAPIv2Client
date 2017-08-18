@@ -16,11 +16,11 @@ class RoomSpec extends ObjectBehavior
     function it_parses_full_json()
     {
         $json = array(
-            'id' => '123556', 'name' => 'Test room', 'links' => array(), 'xmpp_jid' => '',
-            'created' => '2014-02-10 10:02:10', 'is_archived' => true, 'privacy' => 'public',
+            'id'                  => '123556', 'name' => 'Test room', 'links' => array(), 'xmpp_jid' => '',
+            'created'             => '2014-02-10 10:02:10', 'is_archived' => true, 'privacy' => 'public',
             'is_guest_accessible' => false, 'topic' => '', 'participants' => array(),
-            'owner' => array('mention_name' => '@test', 'id' => '123456', 'name' => 'Test', 'links' => array()),
-            'guest_access_url' => ''
+            'owner'               => array('mention_name' => '@test', 'id' => '123456', 'name' => 'Test', 'links' => array()),
+            'guest_access_url'    => '',
         );
         $this->parseJson($json);
         $this->getId()->shouldReturn('123556');
@@ -136,7 +136,6 @@ class RoomSpec extends ObjectBehavior
         $this->setGuestAccessUrl('http://qweqw.com/asdasd')->shouldReturn($this);
         $this->getGuestAccessUrl()->shouldReturn('http://qweqw.com/asdasd');
     }
-
 
 
 }

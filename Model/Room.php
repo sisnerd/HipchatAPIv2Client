@@ -105,10 +105,10 @@ class Room
             $this->xmppJid = $json['xmpp_jid'];
         }
         if (isset($json['created'])) {
-            $this->created         = new \DateTime($json['created']);
+            $this->created = new \DateTime($json['created']);
         }
         if (isset($json['is_archived'])) {
-            $this->archived        = $json['is_archived'];
+            $this->archived = $json['is_archived'];
         }
         if (isset($json['privacy'])) {
             $this->privacy = $json['privacy'];
@@ -142,20 +142,21 @@ class Room
     {
         $json = array();
 
-        $json['name'] = $this->getName();
+        $json['name']    = $this->getName();
         $json['privacy'] = $this->getPrivacy();
         //Parameters for PUT call (Room already exists)
         if ($this->getId()) {
-            $json['is_archived'] = $this->isArchived();
+            $json['is_archived']         = $this->isArchived();
             $json['is_guest_accessible'] = $this->isGuestAccessible();
-            $json['topic'] = $this->getTopic();
-            $json['owner'] = array('id' => $this->getOwner()->getId());
+            $json['topic']               = $this->getTopic();
+            $json['owner']               = array('id' => $this->getOwner()->getId());
         } else { //Paramters for POST call
             $json['guest_access'] = $this->isGuestAccessible();
             if ($this->getOwner()) {
                 $json['owner_user_id'] = $this->getOwner()->getId();
             }
         }
+
         return $json;
     }
 
@@ -169,6 +170,7 @@ class Room
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -192,6 +194,7 @@ class Room
     public function setXmppJid($xmppJid)
     {
         $this->xmppJid = $xmppJid;
+
         return $this;
     }
 
@@ -215,6 +218,7 @@ class Room
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -238,6 +242,7 @@ class Room
     public function setLinks($links)
     {
         $this->links = $links;
+
         return $this;
     }
 
@@ -261,6 +266,7 @@ class Room
     public function setCreated($created)
     {
         $this->created = $created;
+
         return $this;
     }
 
@@ -284,6 +290,7 @@ class Room
     public function setArchived($archived)
     {
         $this->archived = $archived;
+
         return $this;
     }
 
@@ -307,6 +314,7 @@ class Room
     public function setPrivacy($privacy)
     {
         $this->privacy = $privacy;
+
         return $this;
     }
 
@@ -346,6 +354,7 @@ class Room
     public function setGuestAccessible($guestAccessible)
     {
         $this->guestAccessible = $guestAccessible;
+
         return $this;
     }
 
@@ -369,6 +378,7 @@ class Room
     public function setTopic($topic)
     {
         $this->topic = $topic;
+
         return $this;
     }
 
@@ -392,6 +402,7 @@ class Room
     public function setParticipants($participants)
     {
         $this->participants = $participants;
+
         return $this;
     }
 
@@ -415,6 +426,7 @@ class Room
     public function setOwner($owner)
     {
         $this->owner = $owner;
+
         return $this;
     }
 
@@ -442,6 +454,7 @@ class Room
     public function setGuestAccessUrl($guestAccessUrl)
     {
         $this->guestAccessUrl = $guestAccessUrl;
+
         return $this;
     }
 

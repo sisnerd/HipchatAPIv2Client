@@ -39,7 +39,7 @@ class User
      * Works with partial and full user information.
      *
      * @param array $json json_decoded response in json given by the server
-     * 
+     *
      */
     public function __construct($json = null)
     {
@@ -47,7 +47,7 @@ class User
             $this->parseJson($json);
         } else {
             $this->groupAdmin = false;
-            $this->timezone = 'UTC';
+            $this->timezone   = 'UTC';
         }
     }
 
@@ -61,34 +61,34 @@ class User
     public function parseJson($json)
     {
         $this->mentionName = $json['mention_name'];
-        $this->id = $json['id'];
-        $this->name = $json['name'];
+        $this->id          = $json['id'];
+        $this->name        = $json['name'];
         if (isset($json['links'])) {
             $this->links = $json['links'];
         }
-        if(isset($json['xmpp_jid'])) {
-            $this->xmppJid = $json['xmpp_jid'];
-            $this->deleted = $json['is_deleted'];
+        if (isset($json['xmpp_jid'])) {
+            $this->xmppJid    = $json['xmpp_jid'];
+            $this->deleted    = $json['is_deleted'];
             $this->lastActive = $json['last_active'];
-            $this->title = $json['title'];
-            $this->created = new \Datetime($json['created']);
+            $this->title      = $json['title'];
+            $this->created    = new \Datetime($json['created']);
             $this->groupAdmin = $json['is_group_admin'];
-            $this->timezone = $json['timezone'];
-            $this->guest = $json['is_guest'];
-            $this->email = $json['email'];
-            $this->photoUrl = $json['photo_url'];
+            $this->timezone   = $json['timezone'];
+            $this->guest      = $json['is_guest'];
+            $this->email      = $json['email'];
+            $this->photoUrl   = $json['photo_url'];
         }
     }
 
     public function toJson()
     {
-        $json = array();
-        $json['name'] = $this->name;
-        $json['title'] = $this->title;
-        $json['mention_name'] = $this->mentionName;
+        $json                   = array();
+        $json['name']           = $this->name;
+        $json['title']          = $this->title;
+        $json['mention_name']   = $this->mentionName;
         $json['is_group_admin'] = $this->groupAdmin;
-        $json['timezone'] = $this->timezone;
-        $json['email'] = $this->email;
+        $json['timezone']       = $this->timezone;
+        $json['email']          = $this->email;
 
         return $json;
     }
@@ -103,6 +103,7 @@ class User
     public function setXmppJid($xmppJid)
     {
         $this->xmppJid = $xmppJid;
+
         return $this;
     }
 
@@ -126,6 +127,7 @@ class User
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+
         return $this;
     }
 
@@ -149,6 +151,7 @@ class User
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -172,6 +175,7 @@ class User
     public function setLastActive($lastActive)
     {
         $this->lastActive = $lastActive;
+
         return $this;
     }
 
@@ -195,6 +199,7 @@ class User
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -218,6 +223,7 @@ class User
     public function setCreated($created)
     {
         $this->created = $created;
+
         return $this;
     }
 
@@ -241,6 +247,7 @@ class User
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -264,6 +271,7 @@ class User
     public function setMentionName($mentionName)
     {
         $this->mentionName = $mentionName;
+
         return $this;
     }
 
@@ -287,6 +295,7 @@ class User
     public function setGroupAdmin($groupAdmin)
     {
         $this->groupAdmin = $groupAdmin;
+
         return $this;
     }
 
@@ -310,6 +319,7 @@ class User
     public function setTimezone($timezone)
     {
         $this->timezone = $timezone;
+
         return $this;
     }
 
@@ -333,6 +343,7 @@ class User
     public function setGuest($guest)
     {
         $this->guest = $guest;
+
         return $this;
     }
 
@@ -356,6 +367,7 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -379,6 +391,7 @@ class User
     public function setPhotoUrl($photoUrl)
     {
         $this->photoUrl = $photoUrl;
+
         return $this;
     }
 

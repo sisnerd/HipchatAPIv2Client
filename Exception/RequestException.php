@@ -24,10 +24,10 @@ class RequestException extends \Exception
      */
     public function __construct($response)
     {
-        $error = $response['error'];
+        $error              = $response['error'];
         $this->responseCode = $error['code'];
-        $this->message = $error['message'];
-        $this->type = $error['type'];
+        $this->message      = $error['message'];
+        $this->type         = $error['type'];
     }
 
     /**

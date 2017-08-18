@@ -15,12 +15,12 @@ class WebhookSpec extends ObjectBehavior
     function it_parses_full_json()
     {
         $json = array(
-            'id' => '123556',
-            'url' => 'http://example.com/webhook',
+            'id'      => '123556',
+            'url'     => 'http://example.com/webhook',
             'pattern' => '/phpspec/',
-            'event' => 'room_message',
-            'name' => 'phpspec-webhok',
-            'links' => array('self' => 'http://example.com'),
+            'event'   => 'room_message',
+            'name'    => 'phpspec-webhok',
+            'links'   => array('self' => 'http://example.com'),
         );
         $this->parseJson($json);
         $this->getId()->shouldReturn('123556');

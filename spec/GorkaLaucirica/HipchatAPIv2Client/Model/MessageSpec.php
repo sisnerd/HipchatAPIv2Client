@@ -16,13 +16,13 @@ class MessageSpec extends ObjectBehavior
     function it_parses_full_json()
     {
         $json = array(
-            'id' => '123556',
-            'from' => 'Tester',
-            'color' => 'yellow',
-            'notify' => true,
-            'message' => 'Hello World',
+            'id'             => '123556',
+            'from'           => 'Tester',
+            'color'          => 'yellow',
+            'notify'         => true,
+            'message'        => 'Hello World',
             'message_format' => 'html',
-            'date' => '2014-02-10 10:02:10',
+            'date'           => '2014-02-10 10:02:10',
         );
         $this->parseJson($json);
     }

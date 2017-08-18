@@ -31,7 +31,7 @@ class RoomAPISpec extends ObjectBehavior
 
     function it_gets_room(Client $client)
     {
-        $id = 123456;
+        $id       = 123456;
         $response = $this->getResourceResponse();
         $client->get("/v2/room/$id")->shouldBeCalled()->willReturn($response);
 
@@ -40,7 +40,7 @@ class RoomAPISpec extends ObjectBehavior
 
     function it_gets_room_history(Client $client)
     {
-        $id = 123456;
+        $id       = 123456;
         $response = $this->getMessageHistoryArrayResponse();
         $client->get("/v2/room/$id/history/latest", array())->shouldBeCalled()->willReturn($response);
 
@@ -50,8 +50,8 @@ class RoomAPISpec extends ObjectBehavior
     function it_creates_room(Client $client, Room $room)
     {
         $request = array(
-            'name' => 'Test name', 'privacy' => 'private', 'guest_access' => false,
-            'owner_user_id' => '1222'
+            'name'          => 'Test name', 'privacy' => 'private', 'guest_access' => false,
+            'owner_user_id' => '1222',
         );
         $room->toJson()->shouldBeCalled()->willReturn($request);
         $client->post("/v2/room", $request)->shouldBeCalled();
@@ -61,8 +61,8 @@ class RoomAPISpec extends ObjectBehavior
     function it_updates_room(Client $client, Room $room)
     {
         $request = array(
-            'name' => 'Test name', 'is_archived' => false, 'privacy' => 'private', 'is_guest_accessible' => false,
-            'topic' => 'Testing', 'owner' => array('id' => '1222')
+            'name'  => 'Test name', 'is_archived' => false, 'privacy' => 'private', 'is_guest_accessible' => false,
+            'topic' => 'Testing', 'owner' => array('id' => '1222'),
         );
         $room->getId()->shouldBeCalled()->willReturn(123456);
         $room->toJson()->shouldBeCalled()->willReturn($request);
@@ -79,7 +79,7 @@ class RoomAPISpec extends ObjectBehavior
     function it_sends_room_notification(Client $client, Message $message)
     {
         $request = array(
-            "color" => "gray", "message" => "This is a test!!", 'notify' => false, 'message_format' => 'html'
+            "color" => "gray", "message" => "This is a test!!", 'notify' => false, 'message_format' => 'html',
         );
         $message->toJson()->shouldBeCalled()->willReturn($request);
         $client->post("/v2/room/123456/notification", $request)->shouldBeCalled();
@@ -98,36 +98,41 @@ class RoomAPISpec extends ObjectBehavior
         $this->removeMember('665432', '122334');
     }
 
-    function it_invites_users(Client $client) {
+    function it_invites_users(Client $client)
+    {
         $request = array('reason' => 'Reason given');
         $client->post('/v2/room/654321/invite/122233', $request)->shouldBeCalled();
         $this->inviteUser(654321, 122233, 'Reason given');
     }
 
-    function it_sets_topic(Client $client) {
+    function it_sets_topic(Client $client)
+    {
         $request = array('topic' => 'New topic');
         $client->put('/v2/room/665432/topic', $request)->shouldBeCalled();
         $this->setTopic(665432, 'New topic');
     }
 
-    function it_creates_webhook(Client $client, Webhook $webhook) {
+    function it_creates_webhook(Client $client, Webhook $webhook)
+    {
         $request = array(
-            'url' => 'http://example.com/webhook',
+            'url'     => 'http://example.com/webhook',
             'pattern' => '/phpspec/',
-            'event' => 'room_message',
-            'name' => '112233',
+            'event'   => 'room_message',
+            'name'    => '112233',
         );
         $webhook->toJson()->shouldBeCalled()->willReturn($request);
         $client->post('/v2/room/123456/webhook', $request)->shouldBeCalled();
         $this->createWebhook('123456', $webhook);
     }
 
-    function it_deletes_webhook(Client $client) {
+    function it_deletes_webhook(Client $client)
+    {
         $client->delete('/v2/room/123456/webhook/112233')->shouldBeCalled();
         $this->deleteWebhook('123456', '112233');
     }
 
-    function it_gets_webhooks(Client $client, Webhook $webhook) {
+    function it_gets_webhooks(Client $client, Webhook $webhook)
+    {
         $response = $this->getWebhookArrayResponse();
         $client->get('/v2/room/234567/webhook')->shouldBeCalled()->willReturn($response);
         $this->getAllWebhooks('234567')->shouldHaveCount(2);
@@ -136,21 +141,21 @@ class RoomAPISpec extends ObjectBehavior
     protected function getResourceResponse()
     {
         return array(
-            'xmpp_jid' => '',
-            'statistics' => '',
-            'name' => '',
-            'links' => array('self' => '', 'webhooks' => '', 'members' => ''),
-            'created' => '2014-07-09 11:12:22',
-            'is_archived' => true,
-            'privacy' => 'public',
+            'xmpp_jid'            => '',
+            'statistics'          => '',
+            'name'                => '',
+            'links'               => array('self' => '', 'webhooks' => '', 'members' => ''),
+            'created'             => '2014-07-09 11:12:22',
+            'is_archived'         => true,
+            'privacy'             => 'public',
             'is_guest_accessible' => false,
-            'topic' => '',
-            'participants' => array(
-                array('mention_name' => '@test', 'id' => '13123', 'links' => array('self' => ''), 'name' => '')
+            'topic'               => '',
+            'participants'        => array(
+                array('mention_name' => '@test', 'id' => '13123', 'links' => array('self' => ''), 'name' => ''),
             ),
-            'owner' => array('mention_name' => '@test', 'id' => '13123', 'links' => array('self' => ''), 'name' => ''),
-            'id' => 123456,
-            'guest_access_url' => ''
+            'owner'               => array('mention_name' => '@test', 'id' => '13123', 'links' => array('self' => ''), 'name' => ''),
+            'id'                  => 123456,
+            'guest_access_url'    => '',
         );
     }
 
@@ -158,17 +163,17 @@ class RoomAPISpec extends ObjectBehavior
     {
         return array(
             "items" => array(
-                    array(
-                        'id' => 1233,
-                        'name' => 'test1',
-                        'links' => array('self' => '', 'webhooks' => '', 'members' => '')
-                    ),
-                    array(
-                        'id' => 1253,
-                        'name' => 'test2',
-                        'links' => array('self' => '', 'webhooks' => '', 'members' => '')
-                    )
-            )
+                array(
+                    'id'    => 1233,
+                    'name'  => 'test1',
+                    'links' => array('self' => '', 'webhooks' => '', 'members' => ''),
+                ),
+                array(
+                    'id'    => 1253,
+                    'name'  => 'test2',
+                    'links' => array('self' => '', 'webhooks' => '', 'members' => ''),
+                ),
+            ),
         );
 
     }
@@ -177,25 +182,25 @@ class RoomAPISpec extends ObjectBehavior
     {
         return array(
             "items" => array(
-                    array(
-                        'id' => 1233,
-                        'color' => 'yellow',
-                        'from' => 'Tester',
-                        'message' => 'test1',
-                        'notify' => false,
-                        'message_format' => 'html',
-                        'date' => '2014-02-10 10:02:10'
-                    ),
-                    array(
-                        'id' => 1234,
-                        'color' => 'red',
-                        'from' => 'Tester',
-                        'message' => 'test1',
-                        'notify' => false,
-                        'message_format' => 'html',
-                        'date' => '2014-02-10 10:02:10'
-                    )
-            )
+                array(
+                    'id'             => 1233,
+                    'color'          => 'yellow',
+                    'from'           => 'Tester',
+                    'message'        => 'test1',
+                    'notify'         => false,
+                    'message_format' => 'html',
+                    'date'           => '2014-02-10 10:02:10',
+                ),
+                array(
+                    'id'             => 1234,
+                    'color'          => 'red',
+                    'from'           => 'Tester',
+                    'message'        => 'test1',
+                    'notify'         => false,
+                    'message_format' => 'html',
+                    'date'           => '2014-02-10 10:02:10',
+                ),
+            ),
         );
 
     }
@@ -205,18 +210,18 @@ class RoomAPISpec extends ObjectBehavior
         return array(
             'items' => array(
                 array(
-                    'url' => 'http://example.com/dummywebhook',
+                    'url'     => 'http://example.com/dummywebhook',
                     'pattern' => '/phpspec_delete_webhook/',
-                    'event' => 'room_message',
-                    'name' => '332123',
+                    'event'   => 'room_message',
+                    'name'    => '332123',
                 ),
                 array(
-                    'url' => 'http://example.com/dummywebhook2',
+                    'url'     => 'http://example.com/dummywebhook2',
                     'pattern' => '/phpspec_delete_webhook2/',
-                    'event' => 'room_message',
-                    'name' => '432123',
-                )
-            )
+                    'event'   => 'room_message',
+                    'name'    => '432123',
+                ),
+            ),
         );
 
     }

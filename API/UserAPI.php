@@ -3,8 +3,8 @@
 namespace GorkaLaucirica\HipchatAPIv2Client\API;
 
 use GorkaLaucirica\HipchatAPIv2Client\Client;
-use GorkaLaucirica\HipchatAPIv2Client\Model\User;
 use GorkaLaucirica\HipchatAPIv2Client\Model\Message;
+use GorkaLaucirica\HipchatAPIv2Client\Model\User;
 
 class UserAPI
 {
@@ -60,16 +60,16 @@ class UserAPI
      * Creates a new user
      * More info: https://www.hipchat.com/docs/apiv2/method/create_user
      *
-     * @param User   $user     User to be created
+     * @param User $user User to be created
      * @param string $password User's password
      *
      * @return mixed
      */
     public function createUser(User $user, $password)
     {
-        $request = $user->toJson();
+        $request             = $user->toJson();
         $request['password'] = $password;
-        $response = $this->client->post('/v2/user', $request);
+        $response            = $this->client->post('/v2/user', $request);
 
         return $response['id'];
     }
@@ -127,8 +127,9 @@ class UserAPI
      * Sends a user a private message
      * More info: https://www.hipchat.com/docs/apiv2/method/private_message_user
      *
-     * @param string $userId  The id, email address, or mention name (beginning with an '@') of the user to send a message to
-     * @param mixed  $message The message to send as plain text
+     * @param string $userId The id, email address, or mention name (beginning with an '@') of the user to send a
+     *     message to
+     * @param mixed $message The message to send as plain text
      */
     public function privateMessageUser($userId, $message)
     {
@@ -144,8 +145,8 @@ class UserAPI
      * Fetch latest chat history for the 1:1 chat with the user
      * More info: https://www.hipchat.com/docs/apiv2/method/view_recent_privatechat_history
      *
-     * @param string $userId     The id, email address, or mention name (beginning with an '@') of the user
-     * @param mixed  $parameters Optional parameters, check above documentation for more info
+     * @param string $userId The id, email address, or mention name (beginning with an '@') of the user
+     * @param mixed $parameters Optional parameters, check above documentation for more info
      *
      * @return array Message
      */
@@ -168,9 +169,9 @@ class UserAPI
      * Fetch one specific message by id
      * More info: https://www.hipchat.com/docs/apiv2/method/get_privatechat_message
      *
-     * @param string $user       The id, email address, or mention name (beginning with an '@') of the user
-     * @param string $messageId  The id of the message to retrieve
-     * @param array  $parameters Optional parameters, check above documentation for more info
+     * @param string $user The id, email address, or mention name (beginning with an '@') of the user
+     * @param string $messageId The id of the message to retrieve
+     * @param array $parameters Optional parameters, check above documentation for more info
      *
      * @return Message
      */
@@ -191,7 +192,7 @@ class UserAPI
      * More info: https://www.hipchat.com/docs/apiv2/method/get_photo
      *
      * @param string $userId The id, email address, or mention name (beginning with an '@') of the user
-     * @param string $size   The size to retrieve ("small" or "big")
+     * @param string $size The size to retrieve ("small" or "big")
      *
      * @return string
      */

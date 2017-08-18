@@ -21,10 +21,10 @@ class Message
 
 
     const COLOR_YELLOW = 'yellow';
-    const COLOR_GREEN = 'green';
-    const COLOR_RED = 'red';
+    const COLOR_GREEN  = 'green';
+    const COLOR_RED    = 'red';
     const COLOR_PURPLE = 'purple';
-    const COLOR_GRAY = 'gray';
+    const COLOR_GRAY   = 'gray';
     const COLOR_RANDOM = 'random';
 
     const FORMAT_HTML = 'html';
@@ -38,22 +38,22 @@ class Message
         if ($json) {
             $this->parseJson($json);
         } else {
-            $this->color = self::COLOR_YELLOW;
+            $this->color         = self::COLOR_YELLOW;
             $this->messageFormat = self::FORMAT_HTML;
-            $this->message = "";
-            $this->notify = false;
+            $this->message       = "";
+            $this->notify        = false;
         }
     }
 
     public function parseJson($json)
     {
-        $this->id = $json['id'];
-        $this->from = is_array($json['from']) ? $json['from']['name'] : $json['from'];
-        $this->message = $json['message'];
-        $this->color = isset($json['color']) ? $json['color'] : null;
-        $this->notify = $json['notify'];
+        $this->id            = $json['id'];
+        $this->from          = is_array($json['from']) ? $json['from']['name'] : $json['from'];
+        $this->message       = $json['message'];
+        $this->color         = isset($json['color']) ? $json['color'] : null;
+        $this->notify        = $json['notify'];
         $this->messageFormat = isset($json['message_format']) ? $json['message_format'] : 'html';
-        $this->date = $json['date'];
+        $this->date          = $json['date'];
     }
 
 
@@ -64,14 +64,14 @@ class Message
      */
     public function toJson()
     {
-        $json = array();
-        $json['id'] = $this->id;
-        $json['from'] = $this->from;
-        $json['color'] = $this->color;
-        $json['message'] = $this->message;
-        $json['notify'] = $this->notify;
+        $json                   = array();
+        $json['id']             = $this->id;
+        $json['from']           = $this->from;
+        $json['color']          = $this->color;
+        $json['message']        = $this->message;
+        $json['notify']         = $this->notify;
         $json['message_format'] = $this->messageFormat;
-        $json['date'] = $this->date;
+        $json['date']           = $this->date;
 
         return $json;
 
@@ -87,6 +87,7 @@ class Message
     public function setColor($color)
     {
         $this->color = $color;
+
         return $this;
     }
 
@@ -110,6 +111,7 @@ class Message
     public function setMessage($message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -133,6 +135,7 @@ class Message
     public function setNotify($notify)
     {
         $this->notify = $notify;
+
         return $this;
     }
 
@@ -157,6 +160,7 @@ class Message
     public function setMessageFormat($messageFormat)
     {
         $this->messageFormat = $messageFormat;
+
         return $this;
     }
 
@@ -180,6 +184,7 @@ class Message
     public function setFrom($from)
     {
         $this->from = $from;
+
         return $this;
     }
 

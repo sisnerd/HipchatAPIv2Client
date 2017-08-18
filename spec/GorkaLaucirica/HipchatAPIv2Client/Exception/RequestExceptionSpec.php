@@ -12,6 +12,7 @@ class RequestExceptionSpec extends ObjectBehavior
         $response = array('error' => array('code' => 404, 'message' => 'Room not found', 'type' => 'Not found'));
         $this->beConstructedWith($response);
     }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('GorkaLaucirica\HipchatAPIv2Client\Exception\RequestException');

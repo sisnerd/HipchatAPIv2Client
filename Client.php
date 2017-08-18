@@ -28,13 +28,12 @@ class Client
      */
     public function __construct(AuthInterface $auth, Browser $browser = null, $baseUrl = 'https://api.hipchat.com')
     {
-        $this->auth = $auth;
+        $this->auth    = $auth;
         $this->baseUrl = $baseUrl;
         if ($browser === null) {
-            $client = new Curl();
+            $client        = new Curl();
             $this->browser = new Browser($client);
-        }
-        else {
+        } else {
             $this->browser = $browser;
         }
     }
@@ -108,8 +107,8 @@ class Client
         $url = $this->baseUrl . $resource;
 
         $headers = array(
-            'Content-Type' => 'application/json',
-            'Authorization' => $this->auth->getCredential()
+            'Content-Type'  => 'application/json',
+            'Authorization' => $this->auth->getCredential(),
         );
 
         try {
@@ -143,10 +142,10 @@ class Client
      */
     public function put($resource, $content = array())
     {
-        $url = $this->baseUrl . $resource;
+        $url     = $this->baseUrl . $resource;
         $headers = array(
-            'Content-Type' => 'application/json',
-            'Authorization' => $this->auth->getCredential()
+            'Content-Type'  => 'application/json',
+            'Authorization' => $this->auth->getCredential(),
         );
 
         try {
@@ -175,7 +174,7 @@ class Client
         $url = $this->baseUrl . $resource;
 
         $headers = array(
-            'Authorization' => $this->auth->getCredential()
+            'Authorization' => $this->auth->getCredential(),
         );
 
         try {
