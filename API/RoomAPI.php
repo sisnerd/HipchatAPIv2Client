@@ -239,4 +239,25 @@ class RoomAPI
 
         return $webhooks;
     }
+
+    /**
+     * @param Room|int $room
+     * @return Room\Statistics
+     */
+    public function getStatistics($room)
+    {
+        if ($isRoom = $room instanceof Room) {
+            $room = $room->getId();
+        }
+
+        $response = $this->client->get(sprintf('/v2/room/%s/statistics', $room));
+
+        $statistics = (new Room\Statistics($response));
+
+        if ($isRoom) {
+            $room->setStatistics($statistics);
+        }
+
+        return $statistics;
+    }
 }

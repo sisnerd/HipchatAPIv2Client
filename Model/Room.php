@@ -8,7 +8,10 @@ class Room
 
     protected $xmppJid;
 
-    //protected $statistics;
+    /**
+     * @var Room\Statistics
+     */
+    protected $statistics;
 
     protected $name;
 
@@ -378,4 +381,25 @@ class Room
     {
         return $this->guestAccessUrl;
     }
+
+    /**
+     * @return Room\Statistics
+     */
+    public function getStatistics()
+    {
+        return $this->statistics;
+    }
+
+    /**
+     * @param Room\Statistics $statistics
+     * @return $this
+     */
+    public function setStatistics(Room\Statistics $statistics)
+    {
+        $this->statistics = $statistics;
+
+        return $this;
+    }
+
+
 }
