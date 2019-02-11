@@ -24,10 +24,14 @@ class RequestException extends \Exception
      */
     public function __construct($response)
     {
-        $error              = $response['error'];
-        $this->responseCode = $error['code'];
-        $this->message      = $error['message'];
-        $this->type         = $error['type'];
+        if (is_array($response)) {
+            $error = isset($response['error']) ? $response['error'] : null;
+            $this->responseCode = isset($error['code']) ? $error['code'] : null;
+            $this->message      = isset($error['message']) ? $error['message'] : null;
+            $this->type         = isset($error['type']) ? $error['type'] : null;
+        } elseif (is_string($response)) {
+            $this->message = $response;
+        }
     }
 
     /**
